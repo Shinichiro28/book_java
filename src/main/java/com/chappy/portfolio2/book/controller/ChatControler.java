@@ -42,9 +42,26 @@ public class ChatControler {
         return "redirect:/chat";
     }
 
-    @GetMapping("/delete/{id}") //データの削除
+    @GetMapping("/chat/delete/{id}") //データの削除
     public String remove(@PathVariable long id){
         repository.deleteById(id);
+        return "redirect:/chat";
+    }
+
+    //編集
+    @GetMapping("/chat/edit/{id}")
+    public String edit(@PathVariable long id, Model model){
+        model.addAttribute("chat", repository.findById(id)); 
+        return "chat/edit";
+    }
+
+    //更新
+    @PostMapping("/chat/update/{id}")
+    public String update(@PathVariable long id, @Validated @ModelAttribute Chat chat, BindingResult result){
+        if (result.hasErrors()) {
+            return "chat/edit";
+        }
+        repository.save(chat);
         return "redirect:/chat";
     }
 

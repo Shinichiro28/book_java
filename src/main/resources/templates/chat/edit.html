@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>編集画面</title>
+  <style>
+    .red{
+      color: red;
+    }
+    .invalid{
+      border:2px solid red;
+    }
+  </style>
+</head>
+<body>
+  <h2>編集</h2>
+  <form th:action="@{/chat/update/{id}(id=${id})}" th:object="${chat}" method="post">
+    <label>チャット名</label>
+    <input type="text" th:field="*{name}" th:errorclass="invalid"><br>
+    <div class="red" th:errors="*{name}"></div>
+    <button>編集</button>
+  </form>
+</body>
+</html>
