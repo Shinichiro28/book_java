@@ -13,11 +13,24 @@
   </style>
 </head>
 <body>
+    <h2>登録</h2>
   <form th:action="@{/create}" th:object="${chat}" method="post">
     <label>チャット</label>
     <input type="text" th:field="*{name}" th:errorclass="invalid"><br>
     <div class="red" th:errors="*{name}"></div>
     <button>追加</button>
   </form>
+
+  <h2>一覧</h2>
+  <table>
+    <thead>
+        <tr>
+            <td>チャット名</td>
+        </tr>
+    </thead>
+    <tr th:each="chat : ${chats}">
+        <td>[[${chat.name}]]</td>
+    </tr>
+  </table>
 </body>
 </html>
