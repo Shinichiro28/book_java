@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Chat</title>
+  <style>
+    .red{
+        color: red;
+    }
+    .invalid{
+        border: 2px solid red;
+    }
+  </style>
 </head>
 <body>
   <form th:action="@{/create}" th:object="${chat}" method="post">
     <label>チャット</label>
-    <input type="text" th:field="*{name}">
+    <input type="text" th:field="*{name}" th:errorclass="invalid"><br>
+    <div class="red" th:errors="*{name}"></div>
     <button>追加</button>
   </form>
 </body>
