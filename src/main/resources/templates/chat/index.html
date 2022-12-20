@@ -25,11 +25,13 @@
   <table>
     <thead>
         <tr>
-            <td>チャット名</td>
+            <th>チャット名</th>
+            
         </tr>
     </thead>
     <tr th:each="chat : ${chats}">
         <td>[[${chat.name}]]</td>
+        <td><a th:href="@{/chat/delete/{id}(id=${chat.id})}">削除</a></td>
     </tr>
   </table>
 </body>

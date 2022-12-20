@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.chappy.portfolio2.book.model.Chat;
@@ -38,7 +39,13 @@ public class ChatControler {
             return "chat/index";
         }
         repository.saveAndFlush(chat);
-        return "redirect:/";
+        return "redirect:/chat";
+    }
+
+    @GetMapping("/delete/{id}") //データの削除
+    public String remove(@PathVariable long id){
+        repository.deleteById(id);
+        return "redirect:/chat";
     }
 
     //初期データの投入
