@@ -29,7 +29,8 @@
         </tr>
     </thead>
     <tr th:each="chat : ${chats}">
-        <td><a th:href="@{/chat/edit/{id}(id=${chat.id})}">[[${chat.name}]]</a></td>
+        <td><a th:href="@{/chat/{id}(id=${chat.id})}">[[${chat.name}]]</a></td>
+        <td><a th:href="@{/chat/edit/{id}(id=${chat.id})}">編集</a></td>
         <td><a th:href="@{/chat/delete/{id}(id=${chat.id})}">削除</a></td>
     </tr>
   </table>

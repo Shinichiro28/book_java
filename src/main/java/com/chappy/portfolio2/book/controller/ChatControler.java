@@ -23,13 +23,21 @@ public class ChatControler {
         this.repository = repository;
     }
     
+    //一覧ページ
     @GetMapping("/chat")
     public String index(@ModelAttribute Chat chat, Model model){
-        //一覧用データの用意
         model.addAttribute("chats", repository.findAll());
         return "chat/index";
     }
 
+    //個ページ
+    @GetMapping("/chat/{id}")
+    public String show(@PathVariable long id, Model model){
+        model.addAttribute("chat", repository.findById(id)); 
+        return "chat/show";
+    }
+
+    
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute Chat chat, BindingResult result, Model model){
 
